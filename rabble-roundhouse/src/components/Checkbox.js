@@ -1,17 +1,50 @@
-import React, { useState } from 'react';
-const DataTable = ({appData}) => {
-  const [selectedCount, setSelectedCount] = useState(0);
+const DataTable = () => {
+  const appData = [
+    {
+      name: "smss.exe",
+      device: "Stark",
+      path: "\\Device\\HarddiskVolume2\\Windows\\System32\\smss.exe",
+      status: "scheduled",
+    },
+
+    {
+      name: "netsh.exe",
+      device: "Targaryen",
+      path: "\\Device\\HarddiskVolume2\\Windows\\System32\\netsh.exe",
+      status: "available",
+    },
+
+    {
+      name: "uxtheme.dll",
+      device: "Lannister",
+      path: "\\Device\\HarddiskVolume1\\Windows\\System32\\uxtheme.dll",
+      status: "available",
+    },
+
+    {
+      name: "cryptbase.dll",
+      device: "Martell",
+      path: "\\Device\\HarddiskVolume1\\Windows\\System32\\cryptbase.dll",
+      status: "scheduled",
+    },
+
+    {
+      name: "7za.exe",
+      device: "Baratheon",
+      path: "\\Device\\HarddiskVolume1\\temp\\7za.exe",
+      status: "scheduled",
+    },
+  ];
+
   const showDownloads = () => {
     alert("hi");
   };
-  const updateCount = (checked) => {
-      checked===true?setSelectedCount(selectedCount+1):setSelectedCount(selectedCount-1);
-  }
+
   return (
     <div className="dataTable">
       <h2>
         <input type="checkbox" />
-        {selectedCount===0?'None Selected':`Selected ${selectedCount}`}
+        None Selected{" "}
       </h2>
       <h2 onClick={showDownloads}>&#10515; Download Selected</h2>
       <table>
@@ -27,7 +60,6 @@ const DataTable = ({appData}) => {
               <td>
                 <input
                   type="checkbox"
-                  onChange={(e)=>updateCount(e.currentTarget.checked)} 
                   {...(item.status === "available"
                     ? { disabled: false }
                     : { disabled: true })}
