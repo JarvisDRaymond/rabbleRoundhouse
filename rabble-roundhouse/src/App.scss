@@ -1,48 +1,58 @@
 .dataTable {
-
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 40px;
   h2 {
-    display: inline;
-    margin-left: 50px;
-    cursor: pointer;
-  }
-
-  table td,
-  table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-    margin: 5%;
-  }
-  
-  
-  td:nth-child(1) {
-    word-wrap: break-word;
-    max-width: 25px;
-    width: 25px;
-    padding: 0;
-  }
-
-  tr:hover td {
-    background-color: hotpink;
-  }
-  td.available, td.scheduled {
-    text-transform: capitalize;
-  }
-  td.available:before {
-    
-   content: '';
-   display: inline-block;
-   width: 15px;
-   height: 15px;
-   margin-right: 10px;
-   border-radius: 7.5px;
-   background-color: green;
-  }
-  td.scheduled:before {
-    content: '';
     display: inline-block;
-    margin-right: 10px;
-    width: 15px;
-    height: 15px;
+    margin: 0 20px;
+    cursor: pointer;
+    font-weight: 400;
+  }
 
-   }
+  table {
+    margin-top: 10px;
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    tr {
+      &.selected,
+      &:hover td {
+        background-color: #ddd;
+      }
+      td,
+      th {
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 20px 8px 8px;
+        margin: 5%;
+      }
+      td {
+        &.available,
+        &.scheduled {
+          text-transform: capitalize;
+        }
+        &:nth-child(1) {
+          width: 35px;
+          padding: 0;
+        }
+        &.available:before {
+          content: "";
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          margin-right: 10px;
+          border-radius: 7.5px;
+          background-color: green;
+          margin-left: -24px;
+        }
+        &.scheduled:before {
+          content: "";
+          display: inline-block;
+          margin-right: 10px;
+          width: 15px;
+          height: 15px;
+          margin-left: -24px;
+        }
+      }
+    }
+  }
 }
