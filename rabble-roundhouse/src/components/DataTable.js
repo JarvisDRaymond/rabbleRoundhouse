@@ -4,17 +4,17 @@ const DataTable = ({ appData }) => {
   // Clicking "Download Selected" when some or all items are displayed
   // should generate an alert box with the path and device of all selected files.
   const showDownloads = () => {
-    let downloadItems = "";
+    let downloadItems = '';
     appData.forEach((obj, index) => {
-      if (obj.status === "available" && checkedState[index] === true) {
+      if (obj.status === 'available' && checkedState[index] === true) {
         downloadItems +=
-          "\nPath: " + obj.path + "\nDevice: " + obj.device + "\n";
+          '\nPath: ' + obj.path + '\nDevice: ' + obj.device + '\n';
       }
     });
-    if (downloadItems === "") {
-      alert("No items selected and available for download.");
+    if (downloadItems === '') {
+      alert('No items selected and available for download.');
     } else {
-      alert("Items selected & available for download: \n" + downloadItems);
+      alert('Items selected & available for download: \n' + downloadItems);
     }
   };
 
@@ -31,13 +31,11 @@ const DataTable = ({ appData }) => {
     let numChecked = checkedState.reduce((a, b) => a + b);
     // Clicking the select-all checkbox should select all items if none or some are selected.
     // Clicking the select-all checkbox should de-select all items if all are currently selected.
-    appData.forEach((obj, index) => {
       if (numChecked < totalSelectable) {
-        updatedCheckedState.push(true);
+        updatedCheckedState = new Array(appData.length).fill(true)
       } else {
-        updatedCheckedState.push(false);
+        updatedCheckedState = new Array(appData.length).fill(false)
       }
-    });
     setCheckedState(updatedCheckedState);
   };
 
@@ -81,7 +79,6 @@ const DataTable = ({ appData }) => {
   // Output JSX for Component
   return (
     <div className="dataTable">
-
       <input name="Select All Checkbox" type="checkbox" ref={checkboxRef} onClick={selectAll} />
       <h2>
         {checkedState.reduce((a, b) => a + b) === 0
