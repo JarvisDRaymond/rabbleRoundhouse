@@ -24,11 +24,15 @@ const DataTable = ({ appData }) => {
   );
   // Total number of check boxes available
   const totalSelectable = checkedState.length;
+  // Store the current number of checked
+  let numChecked = 0;
+  useEffect(() => {
+    numChecked = checkedState.reduce((a, b) => a + b);
+  });
 
   // SELECT ALL FUNCTIONALITY
   const selectAll = () => {
-    let updatedCheckedState = [];
-    let numChecked = checkedState.reduce((a, b) => a + b);
+    let updatedCheckedState = [];    
     // Clicking the select-all checkbox should select all items if none or some are selected.
     // Clicking the select-all checkbox should de-select all items if all are currently selected.
       if (numChecked < totalSelectable) {
@@ -46,7 +50,6 @@ const DataTable = ({ appData }) => {
     handleSelectAllChange();
   });
   const handleSelectAllChange = () => {
-    let numChecked = checkedState.reduce((a, b) => a + b);
     // The select-all checkbox should be in an unselected state 
     // if no items are selected.
     if (numChecked === 0) {
