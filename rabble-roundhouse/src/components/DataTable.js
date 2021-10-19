@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ItemData from "./ItemData";
 const DataTable = ({ appData }) => {
   // SHOW DOWNLOADS FUNCTIONALITY
   // Clicking "Download Selected" when some or all items are displayed
@@ -18,6 +19,22 @@ const DataTable = ({ appData }) => {
     }
   };
 
+  // Convert App Data to App Data State
+  const [appDataState, setAppDataState] = useState(appData);
+ 
+
+  /*
+  // TODO create new OBJ then assign to appDataState via setAppDataState()
+  // NEW OBJ will include checked:'false' key value pairs 
+  
+
+  useState(()=>{
+    NewOBJ = // create new obj based appData with new checked key value pairs
+    setAppDataState(NewOBJ);
+  },[DIFFSTATE]);
+  */
+
+
   // Creates an array to for the storing check box inputs checked state
   const [checkedState, setCheckedState] = useState(
     new Array(appData.length).fill(false)
@@ -25,10 +42,10 @@ const DataTable = ({ appData }) => {
   // Total number of check boxes available
   const totalSelectable = checkedState.length;
   // Store the current number of checked
-  let numChecked = 0;
+  const [numChecked, setNumChecked] = useState(0);
   useEffect(() => {
-    numChecked = checkedState.reduce((a, b) => a + b);
-  });
+    setNumChecked(checkedState.reduce((a, b) => a + b));
+  },[checkedState]);
 
   // SELECT ALL FUNCTIONALITY
   const selectAll = () => {
@@ -84,9 +101,9 @@ const DataTable = ({ appData }) => {
     <div className="dataTable">
       <input name="Select All Checkbox" type="checkbox" ref={checkboxRef} onClick={selectAll} />
       <h2>
-        {checkedState.reduce((a, b) => a + b) === 0
+        {numChecked===0
           ? "None Selected"
-          : `Selected ${checkedState.reduce((a, b) => a + b)}`}
+          : `Selected ${numChecked}`}
       </h2>
       <h2 onClick={showDownloads}>&#10515;&nbsp;Download Selected</h2>
       <table>
@@ -100,28 +117,17 @@ const DataTable = ({ appData }) => {
           </tr>
         </thead>
         <tbody>
-          {appData.map((item, i) => (
+          {appDataState.map((item, i) => (
             <tr key={i} className={checkedState[i] ? "selected" : ""}>
-              <td>
-                <input
+              <ItemData
                   type="checkbox"
-                  value={item.path}
+                  item={item}
                   checked={checkedState[i]}
                   onChange={() => handleCheckboxChange(i)}
-                ></input>
-              </td>
-              <td>{item.name}</td>
-              <td>{item.device}</td>
-              <td>{item.path}</td>
-              <td
-                className={`${
-                  item.status === "available" ? "available" : "scheduled"
-                }`}
-              >
-                {item.status}
-              </td>
+                />              
             </tr>
           ))}
+              
         </tbody>
       </table>
     </div>
