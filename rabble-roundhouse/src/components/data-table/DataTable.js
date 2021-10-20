@@ -11,13 +11,13 @@ const DataTable = ({ appData }) => {
     appData.forEach((obj, index) => {
       if (obj.status === "available" && obj.checked === true) {
         downloadItems +=
-          "\nPath: " + obj.path + "\nDevice: " + obj.device + "\n";
+          '\nPath: ' + obj.path + '\nDevice: ' + obj.device + '\n';
       }
     });
-    if (downloadItems === "") {
-      alert("No items selected and available for download.");
+    if (downloadItems === '') {
+      alert('No items selected and available for download.');
     } else {
-      alert("Items selected & available for download: \n" + downloadItems);
+      alert('Items selected & available for download: \n' + downloadItems);
     }
   };
 
@@ -65,7 +65,7 @@ const DataTable = ({ appData }) => {
   // Handles the SelectAll Reference
   const checkboxRef = React.useRef();
 
-  useEffect((numChecked) => {
+  useEffect(() => {
     handleSelectAllChange();
   });
 
@@ -82,7 +82,7 @@ const DataTable = ({ appData }) => {
       checkboxRef.current.checked = false;
       checkboxRef.current.indeterminate = true;
     }
-    //The select-all checkbox should be in a selected state
+    // The select-all checkbox should be in a selected state
     // if all items are selected.
     else {
       checkboxRef.current.checked = true;
