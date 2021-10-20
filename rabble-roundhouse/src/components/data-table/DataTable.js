@@ -11,20 +11,20 @@ const DataTable = ({ appData }) => {
     appData.forEach((obj, index) => {
       if (obj.status === "available" && obj.checked === true) {
         downloadItems +=
-          '\nPath: ' + obj.path + '\nDevice: ' + obj.device + '\n';
+          "\nPath: " + obj.path + "\nDevice: " + obj.device + "\n";
       }
     });
-    if (downloadItems === '') {
-      alert('No items selected and available for download.');
+    if (downloadItems === "") {
+      alert("No items selected and available for download.");
     } else {
-      alert('Items selected & available for download: \n' + downloadItems);
+      alert("Items selected & available for download: \n" + downloadItems);
     }
   };
 
   // Convert App Data to App Data State
   const [appDataState, setAppDataState] = useState(appData);
 
-  // Function that sets all checked key value pairs in appDataState to boolVal parameter
+  // Function that sets all checked key value pairs in appDataState to true or false
   const setAllChecked = (boolVal) => {
     let tempObjArr = [];
     appDataState.forEach((obj, index) => {
@@ -43,6 +43,8 @@ const DataTable = ({ appData }) => {
 
   // Stores the current number of checked checkboxes
   const [numChecked, setNumChecked] = useState(0);
+
+  // Keep the numChecked updated when appDataState updates
   useEffect(() => {
     let totalChecked = 0;
     appDataState.forEach((obj, index) => {
