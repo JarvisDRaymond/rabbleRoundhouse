@@ -6,7 +6,7 @@ const ItemData = (props) => {
         <input
           type="checkbox"
           value={props.item.path}
-          checked={props.checked}
+          checked={props.item.checked}
           onChange={props.onChange}
         ></input>
       </td>

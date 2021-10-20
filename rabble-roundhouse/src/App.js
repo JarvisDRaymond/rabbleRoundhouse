@@ -1,5 +1,5 @@
 import "./App.scss";
-import DataTable from "./components/DataTable";
+import DataTable from "./components/data-table/DataTable";
 
 function App() {
   const appData = [
