@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ItemData from "../ItemData";
+import ItemData from "./ItemData";
 import SelectAllCheckbox from "./SelectAllSwitch";
 
 const DataTable = ({ appData }) => {
@@ -94,12 +94,11 @@ const DataTable = ({ appData }) => {
   const handleCheckboxChange = (position) => {
     let tempObjArr = [];
     appDataState.forEach((obj, index) => {
-      if (index===position) obj.checked = !obj.checked;
+      if (index === position) obj.checked = !obj.checked;
       tempObjArr.push(obj);
     });
     setAppDataState(tempObjArr);
   };
-
 
   // Output JSX for Component
   return (
@@ -122,7 +121,7 @@ const DataTable = ({ appData }) => {
             <tr key={i} className={item.checked ? "selected" : ""}>
               <ItemData
                 type="checkbox"
-                item={item}                
+                item={item}
                 onChange={() => handleCheckboxChange(i)}
               />
             </tr>
