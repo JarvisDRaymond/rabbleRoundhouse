@@ -8,6 +8,7 @@ const ItemData = (props) => {
           value={props.item.path}
           checked={props.item.checked}
           onChange={props.onChange}
+          data-testid="itemCheckbox"
         />
       </td>
       <td>{props.item.name}</td>

@@ -3,7 +3,7 @@ import ItemData from "./ItemData";
 import SelectAllCheckbox from "./SelectAllSwitch";
 
 const DataTable = ({ appData }) => {
-  // SHOW DOWNLOADS FUNCTIONALITY
+  
   // Clicking "Download Selected" when some or all items are displayed
   // should generate an alert box with the path and device of all selected files.
   const showDownloads = () => {
@@ -105,7 +105,7 @@ const DataTable = ({ appData }) => {
   // Output JSX for Component
   return (
     <div className="dataTable">
-      <SelectAllCheckbox checkboxRef={checkboxRef} selectAll={selectAll} />
+      <SelectAllCheckbox data-testid="selectAllCheckbox" checkboxRef={checkboxRef} selectAll={selectAll} />
       <h2>{numChecked === 0 ? "None Selected" : `Selected ${numChecked}`}</h2>
       <h2 onClick={showDownloads}>&#10515;&nbsp;Download Selected</h2>
       <table>

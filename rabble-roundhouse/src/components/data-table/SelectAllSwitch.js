@@ -5,6 +5,7 @@ const SelectAllSwitch = (props) => {
       <input
         name="Select All Checkbox"
         type="checkbox"
+        data-testid="selectAllCheckbox"
         ref={props.checkboxRef}
         onClick={props.selectAll}
       />
