@@ -10,6 +10,33 @@ test("Check that data table view can render and display download selected", () =
   expect(downloadSelected).toBeInTheDocument();
 });
 
+test("Check that clicking selectSwitch results in selectSwitch being in checked state", () => {
+  render(<App />);
+  const selectAllCheckbox = screen.getByTestId("selectAllCheckbox");
+  fireEvent.click(selectAllCheckbox);
+  expect(selectAllCheckbox).toBeChecked();
+});
+
+test("Check that double clicking selectSwitch results in selectSwitch being in unchecked state", () => {
+  render(<App />);
+  const selectAllCheckbox = screen.getByTestId("selectAllCheckbox");
+  fireEvent.click(selectAllCheckbox);
+  fireEvent.click(selectAllCheckbox);
+  expect(selectAllCheckbox).not.toBeChecked();
+});
+
+test("Check that after selectSwitch is checked, clicking all item checkboxes results in selectSwitch being in unchecked state", () => {
+  render(<App />);
+  const selectAllCheckbox = screen.getByTestId("selectAllCheckbox");
+  fireEvent.click(selectAllCheckbox);
+  for (var i = 0; i < numTestableItems; i++) {
+    const itemCheckboxes = screen.getAllByTestId("itemCheckbox");
+    let currCheckbox = itemCheckboxes[i];
+    fireEvent.click(currCheckbox);
+  }
+  expect(selectAllCheckbox).not.toBeChecked();
+});
+
 test("Check selectAll switch updates selected count to the max number of testable items", () => {
   render(<App />);
   const selectAllCheckbox = screen.getByTestId("selectAllCheckbox");
@@ -55,7 +82,7 @@ test("Check that selectAll switch updates all item checkboxes to checked", () =>
 
 test("Check that clicking each item checkbox once increments the selected count", () => {
   render(<App />);
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < numTestableItems; i++) {
     const itemCheckboxes = screen.getAllByTestId("itemCheckbox");
     let currCheckbox = itemCheckboxes[i];
     fireEvent.click(currCheckbox);
@@ -72,7 +99,7 @@ test("Check that inputs can decrement total selected from All to None Selected "
   const selectedAllText = "Selected " + numTestableItems;
   const selectedAll = screen.getByText(selectedAllText);
   expect(selectedAll).toBeInTheDocument();
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < numTestableItems; i++) {
     const itemCheckboxes = screen.getAllByTestId("itemCheckbox");
     let currCheckbox = itemCheckboxes[i];
     fireEvent.click(currCheckbox);
@@ -88,11 +115,34 @@ test("Check that inputs can decrement total selected from All to None Selected "
     }
   }
 });
+
+test("Check that clicking all item checkboxes results in selectSwitch being in checked state", () => {
+  render(<App />);
+  for (var i = 0; i < numTestableItems; i++) {
+    const itemCheckboxes = screen.getAllByTestId("itemCheckbox");
+    let currCheckbox = itemCheckboxes[i];
+    fireEvent.click(currCheckbox);
+  }
+  const selectAllCheckbox = screen.getByTestId("selectAllCheckbox");
+  expect(selectAllCheckbox).toBeChecked();
+});
+
+test("Check that after selectSwitch is checked, clicking all item checkboxes results in selectSwitch being in unchecked state", () => {
+  render(<App />);
+  const selectAllCheckbox = screen.getByTestId("selectAllCheckbox");
+  fireEvent.click(selectAllCheckbox);
+  for (var i = 0; i < numTestableItems; i++) {
+    const itemCheckboxes = screen.getAllByTestId("itemCheckbox");
+    let currCheckbox = itemCheckboxes[i];
+    fireEvent.click(currCheckbox);
+  }
+  expect(selectAllCheckbox).not.toBeChecked();
+});
+
 test("Check that download selected can be clicked and fires an alert ", () => {
   render(<App />);
-  const alertMock = jest.spyOn(window,'alert').mockImplementation(); 
+  const alertMock = jest.spyOn(window, "alert").mockImplementation();
   const download = screen.getByText("⤓ Download Selected");
   fireEvent.click(download);
   expect(alertMock).toHaveBeenCalledTimes(1);
 });
-
