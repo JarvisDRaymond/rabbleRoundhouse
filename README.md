@@ -5,7 +5,7 @@ The provided mockup is implemented using React with create-react-app.
 
 ## Instructions for Running
 If necessary, first install NPM and Node. See: https://docs.npmjs.com/cli/v7/configuring-npm/install
-Then, after downloading the rabbleRoundhouse package, navigate to the 'rabbleRoundhouse' directory via the command-line interface (CLI) and entering: 
+Then, after downloading the rabbleRoundhouse package, navigate to the 'rabbleRoundhouse' directory via the command-line interface (CLI) and enter: 
 ```
 cd rabble-roundhouse
 npm install react
