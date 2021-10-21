@@ -1,7 +1,7 @@
 # rabbleRoundhouse
 
 ## UI Developer Test Overview
-The provided mockup is implemented using React with create-react-app.  
+The provided mockup is implemented using React with create-react-app. The application can be viewed here: https://www.jarvisdraymond.com/coding-challenges/rabble-roundhouse/
 
 ## Instructions for Running
 If necessary, first install NPM and Node. See: https://docs.npmjs.com/cli/v7/configuring-npm/install
